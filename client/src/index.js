@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import './assets/app.css';
 import * as serviceWorker from './serviceWorker';
 import AppRouter from './screens/Root';
 

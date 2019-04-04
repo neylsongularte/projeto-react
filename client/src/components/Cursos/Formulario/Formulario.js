@@ -8,21 +8,33 @@ export default class CursosFormulario extends Component {
     constructor(props) {
         super(props);
 
-        let curso = {
-            titulo: '',
-            descricao: ''
-        };
-
-        if(props.curso) {
-            curso = props.curso;
-        }
-
         this.state = {
-            curso: curso
+            curso: {
+                titulo: '',
+                descricao: ''
+            }
         };
 
         this.atualizouCampo = this.atualizouCampo.bind(this);
         this.submit = this.submit.bind(this);
+        this.buscarCurso = this.buscarCurso.bind(this);
+    }
+
+    componentDidMount() {
+        if(this.props.id) {
+            this.buscarCurso(this.props.id);
+        }
+    }
+
+    buscarCurso(id) {
+        axios.get('/api/cursos/' + id)
+        .then((response) => {
+            delete response.data._id;
+
+            this.setState({
+                curso: response.data
+            });
+        });
     }
 
     atualizouCampo (e) {
@@ -48,12 +60,24 @@ export default class CursosFormulario extends Component {
             return;
         }
 
-        axios
+        if(this.props.id) {
+            // atualiza
+            axios
+            .put('/api/cursos/' + this.props.id, this.state.curso)
+            .then(() => {
+                alert('Curso atualizado com sucesso!');
+                this.props.onCursoCadastradoOuAtualizado();
+            });
+
+        } else {
+            // cadastra
+            axios
             .post('/api/cursos', this.state.curso)
             .then(() => {
                 alert('Curso cadastrado com sucesso!');
-                this.props.onCursoCadastrado();
+                this.props.onCursoCadastradoOuAtualizado();
             });
+        }
     }
 
     render () {
@@ -80,7 +104,7 @@ export default class CursosFormulario extends Component {
                 </div>
 
                 <div className="text-center">
-                    <input type="submit" value="Enviar" className="btn btn-primary btn-lg" />
+                    <input type="submit" value={this.props.id ? 'Atualizar' : 'Enviar'} className="btn btn-primary btn-lg" />
                 </div>
             </form>
         );

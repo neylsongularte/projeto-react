@@ -19,11 +19,10 @@ class CursosLista extends Component {
     }
 
     async buscarCursos() {
-        const response = await fetch('/api/cursos');
-
-        response.json().then(cursos => {
+        axios.get('/api/cursos')
+        .then((response) => {
             this.setState({
-                cursos: cursos
+                cursos: response.data
             });
         });
     }
@@ -39,6 +38,7 @@ class CursosLista extends Component {
                 <table className={'table table-bordered mt-3'}>
                     <thead className="thead-dark">
                         <tr>
+                            <th></th>
                             <th>Título</th>
                             <th>Descrição</th>
                             <th></th>
@@ -49,9 +49,13 @@ class CursosLista extends Component {
                             cursos.map((curso) => {
                                 return (
                                     <tr key={curso._id}>
+                                        <td>
+                                            <Link to={`/cursos/${curso._id}`} className="btn btn-primary btn-sm">Visualizar</Link>
+                                        </td>
                                         <td>{curso.titulo}</td>
                                         <td>{curso.descricao}</td>
                                         <td>
+                                            <Link to={`/cursos/${curso._id}/edit`} className="btn btn-primary btn-sm">Editar</Link>
                                         </td>
                                     </tr>
                                 )

@@ -7,15 +7,18 @@ export default class ScreenCursosFormulario extends Component {
 
 
     render() {
+
+        const id = this.props.match.params.id;
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <Link to="/cursos" className="btn btn-primary">&lt; Voltar</Link>
+                        <Link to="/cursos" className="btn btn-primary btn-sm mb-4">&lt; Voltar</Link>
 
-                        <h1 className="mt-4 mb-2">Cadastrar Curso</h1>
+                        <h1 className="mb-2">{id ? 'Editar' : 'Cadastrar' } Curso</h1>
 
-                        <CursosFormulario onCursoCadastrado={() => this.props.history.push('/cursos')} />
+                        <CursosFormulario id={id} onCursoCadastradoOuAtualizado={() => this.props.history.push('/cursos')} />
                     </div>
                 </div>
             </div>
