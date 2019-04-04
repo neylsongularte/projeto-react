@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import CursosLista from '../../components/Cursos/Lista/Lista'
+import AlunosLista from '../../components/Alunos/Lista/Lista'
 
 
 
-function ScreenCursosLista(props) {
-
+function ScreenAlunosLista(props) {
+    
     return (
         <div className="container">
             <div className="row">
                 <div className="col-sm">
                     <Link to="/" className="btn btn-primary btn-sm mb-4">&lt; Voltar</Link>
 
-                    <h1>Cursos</h1>
-                    <CursosLista />
+                    <h1>Alunos</h1>
+                    <AlunosLista />
                 </div>
             </div>
         </div>
     )
 }
 
-export default ScreenCursosLista;
+export default ScreenAlunosLista;

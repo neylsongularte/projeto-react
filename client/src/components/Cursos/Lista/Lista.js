@@ -53,7 +53,7 @@ class CursosLista extends Component {
                                             <Link to={`/cursos/${curso._id}`} className="btn btn-primary btn-sm">Visualizar</Link>
                                         </td>
                                         <td>{curso.titulo}</td>
-                                        <td>{curso.descricao}</td>
+                                        <td>{curso.descricao || '-'}</td>
                                         <td>
                                             <Link to={`/cursos/${curso._id}/edit`} className="btn btn-primary btn-sm">Editar</Link>
                                         </td>
@@ -61,7 +61,7 @@ class CursosLista extends Component {
                                 )
                             })
                             :
-                            (<tr className="text-center"><td colSpan="3">Nenhum registro cadastrado</td></tr>)
+                            (<tr className="text-center"><td colSpan="4">Nenhum registro cadastrado</td></tr>)
                         }
                     </tbody>
                 </table>

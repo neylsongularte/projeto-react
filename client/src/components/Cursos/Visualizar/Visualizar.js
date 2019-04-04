@@ -38,7 +38,7 @@ export default class CursosVisualizar extends Component {
                         <dd>{curso.titulo}</dd>
 
                         <dt>Descrição:</dt>
-                        <dd>{curso.descricao}</dd>
+                        <dd>{curso.descricao || '-'}</dd>
                     </dl>
                 </div>
             );
