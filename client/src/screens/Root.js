@@ -7,6 +7,9 @@ import ScreenCursosVisualizar from './Cursos/Visualizar';
 import ScreenAlunosLista from './Alunos/Lista';
 import ScreenAlunosFormulario from './Alunos/Formulario';
 import ScreenAlunosVisualizar from './Alunos/Visualizar';
+import ScreenMatriculasLista from './Matriculas/Lista';
+import ScreenMatriculasFormulario from './Matriculas/Formulario';
+import ScreenMatriculasVisualizar from './Matriculas/Visualizar';
 
 
 function Index() {
@@ -32,6 +35,9 @@ function AppRouter() {
                     <li className="list-inline-item">
                         <Link to="/alunos" className="btn btn-primary">Alunos</Link>
                     </li>
+                    <li className="list-inline-item">
+                        <Link to="/matriculas" className="btn btn-primary">Matrículas</Link>
+                    </li>
                 </ul>
             </nav>
 
@@ -46,6 +52,11 @@ function AppRouter() {
                 <Route path="/alunos/create" exact component={ScreenAlunosFormulario} />
                 <Route path="/alunos/:id" exact component={ScreenAlunosVisualizar} />
                 <Route path="/alunos/:id/edit" component={ScreenAlunosFormulario} />
+
+                <Route path="/matriculas" exact component={ScreenMatriculasLista} />
+                <Route path="/matriculas/create" exact component={ScreenMatriculasFormulario} />
+                <Route path="/matriculas/:id" exact component={ScreenMatriculasVisualizar} />
+                <Route path="/matriculas/:id/edit" component={ScreenMatriculasFormulario} />
             </Switch>
         </div>
     </Router>

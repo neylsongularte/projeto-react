@@ -1,12 +1,20 @@
 const router = require('express').Router();
 const ObjectID = require('mongodb').ObjectID;
 const getMongoDB = require('../db');
+const escapeStringRegexp = require('escape-string-regexp');
 
 
 // GET Lista
 router.get('/', (req, res) => {
+    const q = req.query.q
+    const queryMongo = {}
+
+    if(q) {
+        queryMongo['titulo'] = new RegExp(escapeStringRegexp(q), 'i');
+    }
+
     getMongoDB(async (db) => {
-        const cursos = await db.collection('cursos').find().toArray();
+        const cursos = await db.collection('cursos').find(queryMongo).toArray();
         res.send(cursos);
     });
 });
